@@ -1,25 +1,34 @@
-// ***********************************************
-// This example commands.js shows you how to
-// create various custom commands and overwrite
-// existing commands.
-//
-// For more comprehensive examples of custom
-// commands please read more here:
-// https://on.cypress.io/custom-commands
-// ***********************************************
-//
-//
-// -- This is a parent command --
-// Cypress.Commands.add('login', (email, password) => { ... })
-//
-//
-// -- This is a child command --
-// Cypress.Commands.add('drag', { prevSubject: 'element'}, (subject, options) => { ... })
-//
-//
-// -- This is a dual command --
-// Cypress.Commands.add('dismiss', { prevSubject: 'optional'}, (subject, options) => { ... })
-//
-//
-// -- This will overwrite an existing command --
-// Cypress.Commands.overwrite('visit', (originalFn, url, options) => { ... })
+import { faker } from '@faker-js/faker'
+
+Cypress.Commands.add('ensureUserExists', (email, pass) => {
+  return cy.api({
+    method: 'GET',
+    url: `https://serverest.dev/usuarios?email=${email}&administrador=true`,
+    failOnStatusCode: false,
+  }).then(response => {
+    if (response.body.quantidade > 0) {
+      return response
+    } else {
+      return cy.api({
+        method: "POST",
+        url: "https://serverest.dev/usuarios",
+        body: {
+          nome: faker.person.fullName(),
+          email: email,
+          password: pass,
+          administrador: "true",
+        },
+        failOnStatusCode: false,
+      }).then((response_post) => {
+        expect(response_post.body.message).to.equal('Cadastro realizado com sucesso')
+        return response_post
+      })
+    }
+  })
+})
+
+Cypress.Commands.add('login', (user, pass) => {
+  cy.get('[data-testid="email"]').type(user)
+  cy.get('[data-testid="senha"]').type(pass)
+  cy.get('button[type="submit"]').click()
+})
