@@ -11,4 +11,8 @@ module.exports = defineConfig({
     viewportWidth: 1920,
     viewportHeight: 1080,
   },
+  env: {
+    baseUrlFront: "https://front.serverest.dev/login",
+    baseUrlBack: "https://serverest.dev",
+  },
 })

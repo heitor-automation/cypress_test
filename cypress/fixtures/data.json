@@ -1,0 +1,28 @@
+{
+  "validationMessages": {
+    "user": {
+      "emailInvalid": "Email deve ser um email válido",
+      "nameRequired": "Nome é obrigatório",
+      "userCreated": "Cadastro realizado com sucesso",
+      "userDeleted": "Registro excluído com sucesso",
+      "userupedated": "Registro alterado com sucesso",
+      "userNotDeleted": "Nenhum registro excluído"
+    },
+    "product": {
+      "nameRequired": "Nome é obrigatório",
+      "priceRequired": "Preco é obrigatório",
+      "descriptionRequired": "Descricao é obrigatório",
+      "quantityRequired": "Quantidade é obrigatório"
+    },
+    "cart": {
+      "cartAssociated": "carrinho cadastrado"
+    },
+    "login": {
+      "invalidCredentials": "Email e/ou senha inválidos"
+    }
+  },
+  "credentials": {
+    "email": "e2eTest@email.com",
+    "pass": "open"
+  }
+}
