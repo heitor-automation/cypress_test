@@ -8,7 +8,7 @@ module.exports = defineConfig({
     },
     specPattern: "cypress/e2e/features/**/*.feature",
     defaultCommandTimeout: 10000,
-
-    // baseUrl: 'https://front.serverest.dev/login',
+    viewportWidth: 1920,
+    viewportHeight: 1080,
   },
 })
